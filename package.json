@@ -19,6 +19,7 @@
     "vuetify": "^3.4.10"
   },
   "dependencies": {
-    "@mdi/font": "^7.4.47"
+    "@mdi/font": "^7.4.47",
+    "vuex": "^4.0.2"
   }
 }

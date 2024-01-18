@@ -8,7 +8,7 @@
         <v-app-bar-title> MatriMony </v-app-bar-title>
       <div class="text-4xl">
         <v-btn  color="white" >save<span class="mdi mdi-bell text-3xl"></span></v-btn>
-        <v-btn  color="white" @click="logout">logout<span class="mdi mdi-account-circle text-3xl"></span></v-btn>
+        <v-btn  @click="signOut">logout<span class="mdi mdi-account-circle text-4xl"></span></v-btn>
       </div>
       </v-app-bar>
       <div  class=" md:flex md:items-center md:w-auto w-full order-2 md:order-2"  id="menu">
@@ -26,17 +26,12 @@
     <NuxtPage/>
 </v-main>
 </template>
-<script>						
-  
-export default {
-
-  data: () => ({
-    //
-    draw:false
-  }),
-  methods:{
-    
-
-  }
+<script setup >					
+const supabase = useSupabaseClient()	
+const draw =ref(false)
+const signOut = async () => {
+    await supabase.auth.signOut()
+    navigateTo('/auth') 
 }
+
 </script>

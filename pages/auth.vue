@@ -3,7 +3,10 @@
        <AuthPage/>
     </v-container>
 </template>
-<script >
+
+<script>
+export default{
+}
 definePageMeta({
   layout: 'default',
 })

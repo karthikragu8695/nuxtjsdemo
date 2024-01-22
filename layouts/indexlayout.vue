@@ -15,7 +15,7 @@
     <v-navigation-drawer v-model="draw" >
       <v-divider></v-divider>
       
-      <v-list-item link to="/" class="mdi mdi-playlist-edit text-3xl pr-5" title="Profiles"></v-list-item>
+      <v-list-item link to="/Profile" class="mdi mdi-playlist-edit text-3xl pr-5" title="Profiles"></v-list-item>
       <v-list-item link to="/" class="mdi mdi-account-edit text-3xl " title="EditProfile"></v-list-item>
       <v-list-item link to="/" class="mdi mdi-account-edit text-3xl " title="Mailbox"></v-list-item>
       <v-list-item link to="/" class="mdi mdi-account-edit text-3xl " title="Chat"></v-list-item>

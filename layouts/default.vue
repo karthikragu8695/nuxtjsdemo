@@ -41,7 +41,7 @@
                       variant="elevated">Sign In
                     </v-btn>
                     <div class="mx-auto text-center my-5">
-                    Dont't have an account<a href=""> signUp</a>
+                    Dont't have an account<a href="/auth"> signUp</a>
                     </div>
                   </v-form>
                 </v-card>

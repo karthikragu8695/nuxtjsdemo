@@ -2,47 +2,14 @@
     <v-container >
         <v-btn @click="dialog=true">Add Profile</v-btn> 
         <v-card class="mt-10">
-            <v-card-text>
-                <v-row >
-                    <v-col cols="2"> Id</v-col>
-                    <v-col cols="2.5"> Name</v-col>
-                    <v-col cols="3"> Gender</v-col>
-                    <v-col cols="2.5">Age </v-col>
-                    <v-col cols="2">MaritalStatus</v-col>
-                </v-row>
-                <v-row v-for="content in contents" :key="content.id">
-                    <v-col cols="2">{{content.name }}</v-col>
-                    <v-col cols="2.5">{{ content.gender}}</v-col>
-                    <v-col cols="3">{{ content.caste }}</v-col>
-                    <v-col cols="2.5">{{ content.MaritalStatus }}</v-col>
-                    
-                </v-row>
-            </v-card-text>
-            <!-- <div v-for="profile in profiles" :key="profile.id" class="flex  ">
-      <v-row>
-        <v-col class="text-center">
-          <v-avatar  color="grey" size="150" rounded="0">
-              <v-img cover src="https://cdn.vuetifyjs.com/images/profiles/marcus.jpg"></v-img>
-          </v-avatar>
-        </v-col>
-        <v-col class="text-left ">
-            <div class="my-10">
-              <h2>{{ profile.name }}</h2>
-              <h2> </h2>
-            <div class="flex mt-2">
-              <h2>{{ profile.caste }}</h2>
-              <h2 class="ml-2"  >{{ profile.dob }}</h2>
-            </div>
-            <v-row class="mt-2">
-              <v-btn class="mr-2"  @click="dialog = true">Show</v-btn>
-              <v-btn >Don't Show</v-btn>
-            </v-row>
-            </div>
-          </v-col>
-      </v-row>
-    
-    
-  </div> -->
+        <v-data-table
+          :headers="headers"
+          :items="items"
+          item-value="name">
+            <template v-slot:[`item.dob`]="{ item }">
+                {{toLocalDate(item.dob)}}
+            </template>
+        </v-data-table>
         </v-card>
             <v-dialog v-model="dialog"  fullscreen :scrim="false" transition="slide-x-reverse-transition">
                 <v-list>
@@ -154,50 +121,25 @@
                             <v-text-field label="Thosam" v-model="Thosam" variant="outlined"></v-text-field>
                             <v-text-field  v-model="FamilyGod"  label="Family God" variant="outlined"></v-text-field>
                             <v-text-field label="Mobile Number" v-model="mobile"  variant="outlined"></v-text-field>
-                            <v-text-field v-model="email" type="email" label="Enter Your Email" variant="outlined"></v-text-field>
-                            <v-text-field v-model="password" type="password" label="Enter Your Password" variant="outlined"></v-text-field>
-                            <!-- <v-row>
-                                <v-col cols="6" >
-                                <v-file-input  v-model="photos" prepend-icon="mdi-camera"  variant="outlined" label="Photo Upload"></v-file-input>
-                                </v-col>
-                                <v-col cols="6">
-                                <v-file-input    variant="outlined" label="Horoscope Upload"></v-file-input>
-                                </v-col>
-                            </v-row> -->
-
-                            <!-- <v-menu v-model="date_menu" :close-on-content-click="false">
-                                <template v-slot:activator="{ props }">
-                                <v-text-field @click="date_menu = true" v-model="dob" v-bind="props" label="Date of birth"></v-text-field>
-                                </template>
-                                <v-date-picker v-model="date"></v-date-picker>
-                            </v-menu>
-                            <v-text-field @click="date_menu = true" v-model="dob" label="Date of birth">
-                                <v-menu  v-model="date_menu" :close-on-content-click="false">
-                                <v-date-picker @update:model-value="setDob" :model-value="date"></v-date-picker>
-                                </v-menu>
-                            </v-text-field> -->
                             </v-card-text>
                             <v-card-actions>
-                                <v-btn type="submit" :loading="loading" block variant="outlined" color="green">sign up</v-btn>
+                                <v-btn type="submit" :loading="loading" block variant="outlined" color="green">Add profile</v-btn>
                             </v-card-actions>
                         </v-card>
                     </v-col>
                  </v-row>
             </v-form>
-                </v-list>
-                
+          </v-list>
         </v-dialog>
     </v-container>
 </template>
 <script setup>
 import { useCounterStore } from '@/stores/index'
-
 const dialog =ref(false)
 const supabase = useSupabaseClient()
 const loading = ref(false)
 const user = useSupabaseUser()
 const email = ref('')
-const contents = ref('')
 const password = ref('')
 const counter = useCounterStore()
 const name = ref('')
@@ -225,36 +167,57 @@ const date = ref(null)
 const Month = ref(null)
 const year = ref(null)
 const gender = ref(null)
-let date_menu = ref(false)
-
-// let dob = ref(null)
-  
-// with autocompletion ✨
-//counter.$patch({ count: counter.count + 8 })
-// or using an action instead
-//counter.increment()
-
-// function setDob() {
-//   dob.value = new Date(date.value).toLocaleDateString('en-IN')
-//   console.log(date.value);
-//   date_menu.value = false
-// }
+const headers = [
+    {
+      title: 'Id',
+      align: 'start',
+      key: 'id',
+    },
+    {
+      title: 'Name',
+      align: 'end',
+      key: 'name',
+    },
+    {
+      title: 'Gender',
+      align: 'end',
+      key: 'gender',
+    },
+    {
+      title: 'Date of birth',
+      align: 'end',
+      key: 'dob',
+    },
+    {
+      title: 'MaritalStatus',
+      align: 'end',
+      key: 'MaritalStatus',
+    },
+    {
+      title: 'Type',
+      align: 'end',
+      key: 'Admin',
+    },]
+const items = ref([])
+const toLocalDate = (date) => {
+    return new Date(+date).toLocaleDateString('en-IN')
+}
+onMounted(async() => {
+  let { data: profiles, error } = await supabase
+  .from('profiles')
+  .select('*')
+  items.value = profiles
+  console.log(profiles);
+})
 const Add = async () => {
   try { 
     loading.value = true
-    this.contents.push({
-        name:name.value,
-        gender:gender.value,
-        caste:caste.value,
-        MaritalStatus:MaritalStatus.value
-     })
-    const { data,error } = await supabase.auth.signUp({ 
-      email: email.value,
-      password: password.value
-     })
-   
-     console.log(contents)
-    if (data.user)  {
+    
+    // const { data,error } = await supabase.auth.signUp({ 
+    //   name: email.value,
+    //   password: password.value
+    //  })
+    if (user)  {
       // console.log(data);
       let profile = {  
             name: name.value, 
@@ -277,14 +240,22 @@ const Add = async () => {
             FatherOccupation :FatherOccupation.value,
             MotherOccupation:MotherOccupation.value,
             FamilyGod:FamilyGod.value,
+            type:'admin',
             dob: Date.parse(`${date.value} ${Month.value} ${year.value} 00:00:00 GMT`)
-           
       }
       await supabase
         .from('profiles')
         .insert([profile])
+        .select(`name,gender,dob,MaritalStatus`)
       .then((res) => {
-        if(!res.error) {
+        // if(profile){
+        //   name.value = profile.name,
+        //   gender.value =  profile.gender,
+        //   dob.value = profile.dob,
+        //   MaritalStatus.value = profile.MaritalStatus
+        // }
+        // console.log(profile)
+         if(!res.error) {
           navigateTo('/')
           console.log("login successfull")
         }

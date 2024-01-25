@@ -43,30 +43,30 @@
                 </v-card-actions>
               </v-card>
             </v-col> -->
-
-            <v-col cols="12">
+            <v-col v-for="profile in profileList" :key="profile.id" cols="4">
               <v-card
                 color="#1F7087"
                 theme="dark">
                 <div class="d-flex flex-wrap justify-space-between">
                   <div>
+                    <NuxtLink  :to="`/${profile.id}`">
                       <v-avatar
-                      class="ma-3"
-                      size="125"
-                      rounded="0">
-                      <v-img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"></v-img>
+                      class="ma-3 rounded-lg"
+                      size="125" >
+                      <v-img  src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"></v-img>
                     </v-avatar>
+                  </NuxtLink>
                     <v-row class="px-5 py-5">
-                      <v-btn variant="outlined"  size="small"><a href="route.profile.Id">show</a></v-btn>
+                        <v-btn variant="outlined" size="small">Show</v-btn>
                     </v-row>
                   </div>
-                  <v-col class="text-left">
+                  <v-col class="text-left mt-5">
                       <div>
-                        <h4>Mani</h4>
-                        <h4> <p>22</p></h4>
+                        <h5>{{ profile.name }}</h5>
+                        <h5 >{{ profile.age }}  , {{ profile.height }}</h5>
                       <div class="flex mt-2">
-                        <h4>Bsc.cs</h4>
-                        <h4 >Never Married</h4>
+                        <h5>{{ profile.Education }}</h5>
+                        <h5 >{{ profile.Profession }} , {{ profile.lives }}</h5>
                       </div>
                       </div>
                   </v-col>
@@ -78,7 +78,7 @@
       </v-card>
 </template>
 
-<script>
+<!-- <script>
 import { useCounterStore } from '@/stores/index'
 export default{
   data(){
@@ -86,14 +86,39 @@ export default{
      
     }
   },
+  methods:{
+    Profileshow(){
+
+    }
+  },
  
   computed:{
     loggedIn(){
       return useCounterStore()
     },
-   
   }
 }
+definePageMeta({
+  layout: 'indexlayout',
+})
+</script> -->
+
+<script setup>
+import { useCounterStore } from '@/stores/index'
+const loggedIn = ref(true)
+const supabase = useSupabaseClient()
+
+const profileList = ref([])
+
+onMounted(async() =>{
+  let { data: profiles, error } = await supabase
+  .from('profiles')
+  .select('*')
+  profileList.value = profiles
+})
+
+
+
 definePageMeta({
   layout: 'indexlayout',
 })

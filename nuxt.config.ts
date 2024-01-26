@@ -9,6 +9,7 @@ export default defineNuxtConfig({
   modules: [
     '@nuxtjs/supabase',
     '@pinia/nuxt',
+    '@nuxtjs/tailwindcss',
     (_options, nuxt) => {
       nuxt.hooks.hook('vite:extendConfig', (config) => {
         // @ts-expect-error

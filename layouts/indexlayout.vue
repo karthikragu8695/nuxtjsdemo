@@ -1,31 +1,52 @@
 <template>
-    <div class="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 px-6 py-3">
-    <v-app-bar :elevation="10">
-      <label for="menu-toggle"  class="cursor-pointer md:hidden block">
-        <v-app-bar-nav-icon  @click="draw=!draw"></v-app-bar-nav-icon>
-      </label>
-      
-        <v-app-bar-title> MatriMony </v-app-bar-title>
-      <div class="text-4xl">
-        <v-btn  color="white" >save<span class="mdi mdi-bell text-3xl"></span></v-btn>
-        <v-btn  @click="signOut">logout<span class="mdi mdi-account-circle text-4xl"></span></v-btn>
-      </div>
-      </v-app-bar>
-      <div  class=" md:flex md:items-center md:w-auto w-full order-2 md:order-2"  id="menu">
-    <v-navigation-drawer v-model="draw" >
-      <v-divider></v-divider>
-      
-      <v-list-item link to="/Profile" class="mdi mdi-playlist-edit text-3xl pr-5" title="Profiles"></v-list-item>
-      <v-list-item link to="/" class="mdi mdi-account-edit text-3xl " title="EditProfile"></v-list-item>
-      <v-list-item link to="/" class="mdi mdi-account-edit text-3xl " title="Mailbox"></v-list-item>
-      <v-list-item link to="/" class="mdi mdi-account-edit text-3xl " title="Chat"></v-list-item>
-    </v-navigation-drawer>
-  </div>
-</div>
-<v-main>
-    <NuxtPage/>
-</v-main>
-</template>
+    <div class="w-full container mx-auto flex flex-wrap items-center  mt-0 px-6 py-3">
+      <v-app-bar :elevation="10">
+        <label for="menu-toggle"  class="cursor-pointer md:hidden ">
+          <v-app-bar-nav-icon  @click="draw=!draw"></v-app-bar-nav-icon>
+        </label>
+          <v-app-bar-title> MatriMony </v-app-bar-title>
+            <div class="text-4xl lg:mr-32  hidden lg:block">
+              <v-btn value="recent" to="/" class="mx-5">
+                  <v-icon>mdi-home</v-icon>
+                  <span to="/"> Home</span>
+              </v-btn>
+              <v-btn value="recent" to="/Profile"  class="px-5">
+                  <v-icon>mdi-account</v-icon>
+                  <span to="/Profile">Matches</span>
+              </v-btn>
+              <v-btn value="recent"  class="px-5">
+                  <v-icon>mdi-mail</v-icon>
+                  <span>Mailbox</span>
+              </v-btn>
+              <v-btn value="recent"  class="px-5">
+                  <v-icon>mdi-wrench</v-icon>
+                  <span>Chat</span>
+              </v-btn>
+              <v-btn value="recent"  class="px-5">
+                  <span class="mdi mdi mdi-bell text-h6"></span>
+                  <span>Notification</span>
+              </v-btn>
+            </div>
+            <div class="hidden lg:block">
+              <v-btn  @click="" ><span class="mdi mdi-account-circle text-4xl"></span> <v-btn><span class="mdi mdi-chevron-down"></span></v-btn></v-btn>
+            <!-- signOut -->
+            </div>
+         
+            </v-app-bar>
+              <div class="lg:hidden  md:flex md:items-center md:w-auto w-full order-2 md:order-2"  id="menu">
+                  <v-navigation-drawer v-model="draw" >
+                    <v-divider></v-divider>
+                    <v-list-item link to="/Profile"  class="mdi mdi-playlist-edit text-3xl pr-5" title="Profiles"></v-list-item>
+                    <v-list-item link to="/" class="mdi mdi-account-edit text-3xl " title="EditProfile"></v-list-item>
+                    <v-list-item link to="/" class="mdi mdi-account-edit text-3xl " title="Mailbox"></v-list-item>
+                    <v-list-item link to="/" class="mdi mdi-account-edit text-3xl " title="Chat"></v-list-item>
+                  </v-navigation-drawer>
+              </div>
+            </div>
+            <v-main>
+                <NuxtPage/>
+            </v-main>
+            </template>
 <script setup >					
 const supabase = useSupabaseClient()	
 const draw =ref(false)

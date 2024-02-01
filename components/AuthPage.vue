@@ -1,5 +1,5 @@
 <template>
- <form class="row flex-center flex" @submit.prevent="handleLogin">
+ <form class="row flex-center flex" @submit.prevent="uploadFile">
   <!-- <div>Current Count: {{ counter.loggedIn }}</div> -->
 <v-container>
         <v-row align="center" justify="center">
@@ -109,14 +109,12 @@
                       <v-text-field label="Mobile Number" v-model="mobile"  variant="outlined"></v-text-field>
                       <v-text-field v-model="email" type="email" label="Enter Your Email" variant="outlined"></v-text-field>
                       <v-text-field v-model="password" type="password" label="Enter Your Password" variant="outlined"></v-text-field>
-                      <!-- <v-row>
+                      <v-row>
                         <v-col cols="6" >
                           <v-file-input  v-model="photos" prepend-icon="mdi-camera"  variant="outlined" label="Photo Upload"></v-file-input>
                         </v-col>
-                        <v-col cols="6">
-                           <v-file-input    variant="outlined" label="Horoscope Upload"></v-file-input>
-                        </v-col>
-                      </v-row> -->
+                        
+                      </v-row>
 
                       <!-- <v-menu v-model="date_menu" :close-on-content-click="false">
                         <template v-slot:activator="{ props }">
@@ -173,6 +171,8 @@ const Month = ref(null)
 const year = ref(null)
 const gender = ref(null)
 let date_menu = ref(false)
+
+
 // let dob = ref(null)
   
 // with autocompletion ✨
@@ -185,7 +185,8 @@ let date_menu = ref(false)
 //   console.log(date.value);
 //   date_menu.value = false
 // }
-const handleLogin = async () => {
+
+const handleLogin = async (e) => {
   try { 
     loading.value = true
     const { data,error } = await supabase.auth.signUp({ 
@@ -193,6 +194,9 @@ const handleLogin = async () => {
       password: password.value
      })
     if (data.user)  {
+    //  const {data,error}= await supabase.storage.from('name/').upload('img',photos.value[0])  
+    //  console.log(error)
+    //  console.log(photos.value[0])
       // console.log(data);
       let profile = {  
             name: name.value, 
@@ -217,13 +221,13 @@ const handleLogin = async () => {
             FamilyGod:FamilyGod.value,
             dob: Date.parse(`${date.value} ${Month.value} ${year.value} 00:00:00 GMT`),
             type: 'user'
-           
       }
       console.log(profile);
+      // await supabase.storage.from('images').upload('image',photos.value[0])  
       await supabase
         .from('profiles')
         .insert([profile])
-      .then((res) => {
+        .then((res) => {
         if(!res.error) {
           navigateTo('/')
           console.log("login successfull")
@@ -238,6 +242,14 @@ const handleLogin = async () => {
     loading.value = false
   }
   
+}
+const uploadFile = async () =>{
+    console.log(photos.value[0]);
+     const { data, error } = await supabase.storage
+     .from('images')
+     .upload(`photos/${photos.value[0].name}`, photos.value[0])
+     console.log(data)
+     console.log(error);
 }
 </script>
 

@@ -1,6 +1,6 @@
 <template>
         <v-container>
-         <NuxtLink :to="`/`"><span  class="mdi mdi-arrow-left text-h5"> Matches</span></NuxtLink>   
+         <NuxtLink to="/"><span  class="mdi mdi-arrow-left text-h5"> Matches</span></NuxtLink>   
           <div v-if="profile">
           <v-row dense>
             <v-col>
@@ -11,7 +11,7 @@
                         <v-img  src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"></v-img>
                       </v-avatar> 
                   </div>
-                  <v-col class="text-left   w-full md:w-1/3  flex flex-col">
+                  <v-col class="text-left   w-full md:w-1/3 lg:w-2/3 flex flex-col">
                         <v-row><span class="mdi mdi-shield-check text-blue mt-3  ">id verified</span></v-row>
                         <v-row class="font-bold text-h5 mt-4">{{ profile.name }}</v-row>
                         <v-row class="text-gray-300 mt-4">M09872334 | Last seen few hour ago</v-row>
@@ -182,6 +182,7 @@ const route = useRoute()
 const supabase = useSupabaseClient()
 let profile =ref(null)
 const id = route.params.Id
+
 
 onMounted (async()=>{
     

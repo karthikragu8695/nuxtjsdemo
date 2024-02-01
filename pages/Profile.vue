@@ -209,7 +209,7 @@ onMounted(async() => {
   items.value = profiles
   console.log(profiles);
 })
-const Add = async () => {
+const Add = async (e) => {
   try { 
     loading.value = true
     
@@ -268,6 +268,6 @@ const Add = async () => {
   } finally {
     loading.value = false
   }
-  
 }
+
 </script>

@@ -1,5 +1,5 @@
 <template>
- <form class="row flex-center flex" @submit.prevent="uploadFile">
+ <form class="row flex-center flex" @submit.prevent="handleLogin">
   <!-- <div>Current Count: {{ counter.loggedIn }}</div> -->
 <v-container>
         <v-row align="center" justify="center">
@@ -9,6 +9,7 @@
                   
                     <v-card-text>
                       <v-text-field label="Name" v-model="name"  variant="outlined"></v-text-field>
+                      
                       <v-radio-group inline v-model="gender"  >
                             <v-radio label="Male"    class="border border-black pr-5"  value="male"></v-radio>
                             <v-radio label="Female"  class="border border-black pr-5 ml-5"  value="female"></v-radio>
@@ -66,7 +67,14 @@
                         <v-text-field v-model="MotherOccupation" label="MotherOccupation" variant="outlined"></v-text-field>
                         </v-col>
                       </v-row>
-          
+                      <v-row>
+                        <v-col cols="6">
+                            <v-text-field label="Age" v-model="age"  variant="outlined"></v-text-field>
+                        </v-col>
+                        <v-col cols="6">
+                            <v-text-field label="Height" v-model="height"  variant="outlined"></v-text-field>
+                        </v-col>
+                      </v-row>
                       <v-select
                             label="Religion"
                             v-model="Religion"
@@ -85,6 +93,11 @@
                             :items="['DOCTOR', 'IT', 'NON IT','BUSSINESS','CIVIL','GOVERMENT JOB','OTHERS']"
                             variant="outlined">
                         </v-select>
+                        <v-row>
+                          <v-col cols="12">
+                          <v-text-field label="lives" v-model="lives"  variant="outlined"></v-text-field>
+                          </v-col>
+                        </v-row>
                         <v-row>
                           <v-col cols="6">
                             <v-text-field label="ElderBrother" type="number" v-model="ElderBrothers" variant="outlined"></v-text-field>
@@ -146,6 +159,9 @@ const email = ref('')
 const password = ref('')
 const counter = useCounterStore()
 const name = ref('')
+const age = ref('')
+const lives = ref('')
+const height = ref('')
 const mobile = ref('')
 const MaritalStatus = ref(null)
 const caste = ref(null)
@@ -193,13 +209,20 @@ const handleLogin = async (e) => {
       email: email.value,
       password: password.value
      })
+//      const uploadFile = async () =>{
+//     console.log(photos.value[0]);
+//      const { data, error } = await supabase.storage
+//      .from('images')
+//      .upload(`photos/${photos.value[0].name}`, photos.value[0])
+//      console.log(data)
+//      console.log(error);
+// }
     if (data.user)  {
-    //  const {data,error}= await supabase.storage.from('name/').upload('img',photos.value[0])  
-    //  console.log(error)
-    //  console.log(photos.value[0])
-      // console.log(data);
       let profile = {  
             name: name.value, 
+            age: age.value, 
+            height: height.value, 
+            lives: lives.value, 
             mobile: +mobile.value,
             gender : gender.value,
             MaritalStatus : MaritalStatus.value,
@@ -220,9 +243,13 @@ const handleLogin = async (e) => {
             MotherOccupation:MotherOccupation.value,
             FamilyGod:FamilyGod.value,
             dob: Date.parse(`${date.value} ${Month.value} ${year.value} 00:00:00 GMT`),
-            type: 'user'
+            type: 'user',
+            photos:"https://myizzcmzjfnzaldgrqgw.supabase.co/storage/v1/object/public/images/photos/"+photos.value[0].name
       }
       console.log(profile);
+      const {data,error}= await supabase.storage.from('images').upload(`photos/${photos.value[0].name}`,photos.value[0])  
+      console.log(error)
+      console.log(data);
       // await supabase.storage.from('images').upload('image',photos.value[0])  
       await supabase
         .from('profiles')
@@ -243,14 +270,7 @@ const handleLogin = async (e) => {
   }
   
 }
-const uploadFile = async () =>{
-    console.log(photos.value[0]);
-     const { data, error } = await supabase.storage
-     .from('images')
-     .upload(`photos/${photos.value[0].name}`, photos.value[0])
-     console.log(data)
-     console.log(error);
-}
+
 </script>
 
 

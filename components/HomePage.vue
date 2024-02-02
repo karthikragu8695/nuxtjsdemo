@@ -8,7 +8,6 @@
             </v-avatar>
           </v-col>
           <v-list   class="font-bold text-center  text-h5" >L.mathan</v-list>
-
         </v-list>
         <v-row class="mt-10">
             <v-col cols="6" >

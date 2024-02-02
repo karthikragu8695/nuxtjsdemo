@@ -10,7 +10,7 @@
                   <v-col>
                     <NuxtLink  :to="`/${profile.id}`">
                         <v-avatar class="ma-3 rounded-lg" size="125" >
-                          <v-img  src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"></v-img>
+                          <v-img  v-model:src="profile.photos"></v-img>
                         </v-avatar>
                     </NuxtLink>
                  

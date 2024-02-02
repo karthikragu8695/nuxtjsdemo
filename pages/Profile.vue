@@ -80,6 +80,14 @@
                                 <v-text-field v-model="MotherOccupation" label="MotherOccupation" variant="outlined"></v-text-field>
                                 </v-col>
                             </v-row>
+                            <v-row>
+                                <v-col cols="6">
+                                <v-text-field v-model="age" label="Age" variant="outlined"></v-text-field>
+                                </v-col>
+                                <v-col cols="6">
+                                <v-text-field v-model="height" label="Height" variant="outlined"></v-text-field>
+                                </v-col>
+                            </v-row>
                 
                             <v-select
                                     label="Religion"
@@ -116,12 +124,18 @@
                                 </v-col>
                                 </v-row>
                                 
+                            <v-text-field label="lives" v-model="lives"  variant="outlined"></v-text-field>
                             <v-text-field label="Rashi" v-model="Rashi"  variant="outlined"></v-text-field>
                             <v-text-field label="Nadchathiram" v-model="Nadchathiram" variant="outlined"></v-text-field>
                             <v-text-field label="Thosam" v-model="Thosam" variant="outlined"></v-text-field>
                             <v-text-field  v-model="FamilyGod"  label="Family God" variant="outlined"></v-text-field>
                             <v-text-field label="Mobile Number" v-model="mobile"  variant="outlined"></v-text-field>
                             </v-card-text>
+                            <v-row>
+                              <v-col cols="6" >
+                                <v-file-input  v-model="photos" prepend-icon="mdi-camera"  variant="outlined" label="Photo Upload"></v-file-input>
+                              </v-col>
+                            </v-row>
                             <v-card-actions>
                                 <v-btn type="submit" :loading="loading" block variant="outlined" color="green">Add profile</v-btn>
                             </v-card-actions>
@@ -143,6 +157,9 @@ const email = ref('')
 const password = ref('')
 const counter = useCounterStore()
 const name = ref('')
+const age = ref('')
+const height = ref('')
+const lives = ref('')
 const mobile = ref('')
 const MaritalStatus = ref(null)
 const caste = ref(null)
@@ -221,6 +238,10 @@ const Add = async (e) => {
       // console.log(data);
       let profile = {  
             name: name.value, 
+            age: age.value, 
+            height: height.value, 
+            lives: lives.value, 
+            photos:"https://myizzcmzjfnzaldgrqgw.supabase.co/storage/v1/object/public/images/photos/"+photos.value[0].name,
             mobile: +mobile.value,
             gender : gender.value,
             MaritalStatus : MaritalStatus.value,
@@ -243,6 +264,9 @@ const Add = async (e) => {
             type:'admin',
             dob: Date.parse(`${date.value} ${Month.value} ${year.value} 00:00:00 GMT`)
       }
+      const {data,error}= await supabase.storage.from('images').upload(`photos/${photos.value[0].name}`,photos.value[0])  
+      console.log(error)
+      console.log(data);
       await supabase
         .from('profiles')
         .insert([profile])

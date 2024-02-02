@@ -8,7 +8,7 @@
                 <div class="d-flex flex-wrap   justify-space-between ">
                   <div class="w-full  items-center md:w-1/3 flex flex-col" >
                       <v-avatar class="  rounded-lg" size="250">
-                        <v-img  src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"></v-img>
+                        <v-img  v-model:src=profile.photos></v-img>
                       </v-avatar> 
                   </div>
                   <v-col class="text-left   w-full md:w-1/3 lg:w-2/3 flex flex-col">

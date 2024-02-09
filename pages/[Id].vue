@@ -21,7 +21,7 @@
                         </v-row>
                         <v-row>
                             <v-col cols="2" class="text-left"><span class="mdi  mdi-account-box-multiple text-white px-1 py-1 rounded bg-blue-500"></span></v-col>
-                            <v-col cols="10" class="text-left">goverment job</v-col>
+                            <v-col cols="10" class="text-left">{{ profile.Profession }}</v-col>
                         </v-row>
                         <v-row >
                             <v-col cols="2" class="text-left"><span class="mdi mdi mdi-map-marker-radius-outline text-white px-1 py-1 rounded bg-blue-500"></span></v-col>

@@ -226,7 +226,7 @@ onMounted(async() => {
   items.value = profiles
   console.log(profiles);
 })
-const Add = async (e) => {
+const Add = async () => {
   try { 
     loading.value = true
     

@@ -12,7 +12,7 @@
               </v-btn>
               <v-btn value="recent" to="/Profile"  class="px-5">
                   <v-icon>mdi-account</v-icon>
-                  <span to="/Profile">Matches</span>
+                  <span to="/profile">Matches</span>
               </v-btn>
               <v-btn value="recent"  class="px-5">
                   <v-icon>mdi-mail</v-icon>
@@ -36,7 +36,7 @@
               <div class="lg:hidden  md:flex md:items-center md:w-auto w-full order-2 md:order-2"  id="menu">
                   <v-navigation-drawer v-model="draw" >
                     <v-divider></v-divider>
-                    <v-list-item link to="/Profile"  class="mdi mdi-playlist-edit text-3xl pr-5" title="Profiles"></v-list-item>
+                    <v-list-item link to="/"  class="mdi mdi-playlist-edit text-3xl pr-5" title="Profiles"></v-list-item>
                     <v-list-item link to="/" class="mdi mdi-account-edit text-3xl " title="EditProfile"></v-list-item>
                     <v-list-item link to="/" class="mdi mdi-account-edit text-3xl " title="Mailbox"></v-list-item>
                     <v-list-item link to="/" class="mdi mdi-account-edit text-3xl " title="Chat"></v-list-item>

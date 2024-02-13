@@ -1,52 +1,6 @@
 <template>
-  <v-container>
-      <v-row>
-        <v-col  lg="4 "    class="hidden w-full lg:block"> 
-          <!-- <v-btn  @click="dialog = !dialog" class="rounded-xl px-2 "><span class="mdi mdi-filter-variant text-h5 px-2  "></span>Filter</v-btn> -->
-          <details-page ></details-page>
-        </v-col>
-        
-        <v-col lg="8" md="8" sm="12" >
-          <div class="lg:hidden block">
-            <v-dialog  
-              v-model="show"
-              fullscreen
-              :scrim="false"
-              transition="slide-x-reverse-transition"
-            >
-              <template v-slot:activator="{ props }">
-                <v-btn
-                  color="transparent"
-                  dark
-                  v-bind="props"
-                ><span class="mdi mdi-filter-variant text-h5  "></span>
-                 Filter
-                </v-btn>
-              </template>
-              <v-card>
-                <v-toolbar
-                  dark
-                  color="white"
-                >
-                  <v-btn
-                    icon
-                    dark
-                    @click="show = false"
-                  >
-                    <v-icon>mdi-close</v-icon>
-                  </v-btn>
-                  <v-toolbar-title></v-toolbar-title>
-                  <v-spacer></v-spacer>
-                  <v-toolbar-items>
-                    <v-btn
-                      variant="text"
-                      @click="show = false"
-                    >
-                      Save
-                    </v-btn>
-                  </v-toolbar-items>
-                </v-toolbar>
-                <v-row>
+    <v-container>
+        <v-row>
           <v-col>
             <v-tabs v-model="tab"   class="mx-auto text-center ">
               <v-tab value="one">Filter Profile</v-tab>
@@ -746,113 +700,9 @@
               </v-card-text>
           </v-col>
         </v-row>
-              </v-card>
-            </v-dialog>
-            </div>
-          
-          <v-container>
-           
-              <v-card class="mb-5" >
-                <v-row  >
-                  <v-col    class=" text-center w-full lg:w-1/2   p-3 ">
-                    <v-img :width="210"  class="p-24 mx-auto my-5  rounded-xl" aspect-ratio="16/9" cover src="https://img.freepik.com/free-photo/portrait-young-man-talking-phone-walking-street_231208-2764.jpg" >
-                    </v-img>
-                  </v-col>
-                  <v-col >
-                    <v-col class="text-left    w-full md:w-1/2 px-5 flex flex-col">
-                            <v-row><span class="mdi mdi-shield-check text-blue mt-3  ">id verified</span></v-row>
-                            <v-row class="font-bold text-h5 mt-4">mohan</v-row>
-                            <!-- <v-row class="text-gray-400 mt-4">M09872334 | Last seen few hour ago</v-row> -->
-                            <v-row class="text-left mt-3">
-                              <div >
-                                <h2>23Yrs <span class="mx-4"> 5'2"</span>Adhithiya <span class="mx-4">M.SC. BPO / KPO /ITes </span> </h2>
-                                <h2 >Professional <span class="mx-4">pondicherry</span>  </h2>
-                                <h2 class="mt-4 text-gray-400">Interested in her ?</h2>
-                                <h2  >Connect Now</h2>
-                                <!-- <div class="my-2">
-                                  <v-btn class=" border border-black rounded-xl"><span class="mdi mdi-close text-2xl"></span>Dont'show</v-btn>
-                                  <v-btn class=" border border-black rounded-xl ml-3 bg-orange"><span class="mdi mdi-check text-2xl"></span>Send Interest</v-btn>
-                                </div> -->
-                              </div>
-                            </v-row>
-                            
-                    </v-col>
-                  </v-col>
-                </v-row>
-              </v-card >
-              <v-card class="mb-5">
-                <v-row >
-                  <v-col  class=" text-center w-full lg:w-1/2  p-3 ">
-                    <v-img :width="210"  class="p-24 mx-auto my-5  rounded-xl" aspect-ratio="16/9" cover src="https://storage.googleapis.com/pai-images/3ac434680c7c469b868bc247e3cb01f0.jpeg" >
-                    </v-img>
-                  </v-col>
-                  <v-col > 
-                    <v-col class="text-left    w-full md:w-1/2 flex flex-col px-5">
-                            <v-row><span class="mdi mdi-shield-check text-blue mt-3  ">id verified</span></v-row>
-                            <v-row class="font-bold text-h5 mt-4">kiran</v-row>
-                            <!-- <v-row class="text-gray-400 mt-4">M09872334 | Last seen few hour ago</v-row> -->
-                            <v-row class="text-left mt-3">
-                              <div >
-                                <h2>23Yrs <span class="mx-4"> 5'2"</span>Adhithiya <span class="mx-4">M.SC. BPO / KPO /ITes </span> </h2>
-                                <h2 >Professional <span class="mx-4">pondicherry</span>  </h2>
-                                <h2 class="mt-4 text-gray-400">Interested in her ?</h2>
-                                <h2  >Connect Now</h2>
-                                <!-- <div class="my-2">
-                                  <v-btn class=" border border-black rounded-xl"><span class="mdi mdi-close text-xl lg:text-2xl"></span>Dont'show</v-btn>
-                                  <v-btn class=" border border-black rounded-xl ml-3 bg-orange"><span class="mdi mdi-check text-2xl"></span>Send Interest</v-btn>
-                                </div> -->
-                              </div>
-                            </v-row>
-                            <v-row>
-                                
-                            </v-row>
-                            <v-row >
-                                
-                            </v-row>
-                    </v-col>
-                  </v-col>
-                </v-row>
-              </v-card>
-              <v-card class="mb-5">
-                <v-row >
-                  <v-col  class=" text-center w-full lg:w-1/2  p-3 ">
-                    <v-img :width="210"  class="p-24 mx-auto my-5  rounded-xl" aspect-ratio="16/9" cover src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-OqwmvDFJl9S3PwbYNGq3LSF8rk3CRxPQQ0-exhPNg7JLcnsfDyJCvOM2i3xBf7XRiw4&usqp=CAU" >
-                    </v-img>
-                  </v-col>
-                  <v-col >
-                    <v-col class="text-left    w-full md:w-1/2 flex flex-col px-5">
-                            <v-row><span class="mdi mdi-shield-check text-blue mt-3  ">id verified</span></v-row>
-                            <v-row class="font-bold text-h5 mt-4">Vimal</v-row>
-                            <!-- <v-row class="text-gray-400 mt-4">M09872334 | Last seen few hour ago</v-row> -->
-                            <v-row class="text-left mt-3">
-                              <div >
-                                <h2>23Yrs <span class="mx-4"> 5'2"</span>Adhithiya <span class="mx-4">M.SC. BPO / KPO /ITes </span> </h2>
-                                <h2 >Professional <span class="mx-4">pondicherry</span>  </h2>
-                                <h2 class="mt-4 text-gray-400">Interested in her ?</h2>
-                                <h2  >Connect Now</h2>
-                                <!-- <div class="my-2">
-                                  <v-btn class=" border border-black rounded-xl"><span class="mdi mdi-close text-2xl"></span>Dont'show</v-btn>
-                                  <v-btn class=" border border-black rounded-xl ml-3 bg-orange"><span class="mdi mdi-check text-2xl"></span>Send Interest</v-btn>
-                                </div> -->
-                              </div>
-                            </v-row>
-                            <v-row>
-                                
-                            </v-row>
-                            <v-row >
-                                
-                            </v-row>
-                    </v-col>
-                  </v-col>
-                </v-row>
-              </v-card>
-          </v-container>
-        </v-col>
-      </v-row>
-      
-  </v-container>
+    </v-container>
+          </template>
 
-</template>
 <script setup>
  const tab = ref(null)
  const dialog = ref (false)
@@ -886,20 +736,5 @@
  const Country = ref('Any')
  const Citizenship = ref('Any')
  const profiles = ref([''])
-const show =ref(false)
-// const search = async () =>{
-//   const { data, error } = await supabase
-//   .from('profiles')
-//   .select()
-//   .eq('age', min_age.value )
-//   console.log(data)
-//   console.log(profiles)
 
-// }
-
-definePageMeta({
-  layout: 'indexlayout',
-})
-    
- 
-</script>
+ </script>

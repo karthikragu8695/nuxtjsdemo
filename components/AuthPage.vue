@@ -1,14 +1,12 @@
 <template>
- <form class="row flex-center flex" @submit.prevent="handleLogin">
+ <form ref="form" class="row flex-center flex" @submit.prevent="handleLogin">
   <!-- <div>Current Count: {{ counter.loggedIn }}</div> -->
 <v-container>
         <v-row align="center" justify="center">
             <v-col justify="center" align="center" cols="12">
-              
                 <v-card max-width="700px">
-                  
                     <v-card-text>
-                      <v-text-field label="Name" v-model="name"  variant="outlined"></v-text-field>
+                      <v-text-field label="Name" v-model="name" :rules="firstNameRules"  :counter="10" variant="outlined" required></v-text-field>
                       
                       <v-radio-group inline v-model="gender"  >
                             <v-radio label="Male"    class="border border-black pr-5"  value="male"></v-radio>
@@ -20,82 +18,97 @@
                         label="Day"
                         :items="['1', '2', '3', '4', '5', '6','7','8','9','10','11','12','13','14','15']"
                         variant="outlined"
+                        :rules="dobRules1"
                         v-model="date"
+                        required
                         ></v-select>
                     </v-col>
                     <v-col cols="4">
                         <v-select
                         label="Month"
                         v-model="Month"
+                        :rules="dobRules2"
                         :items="['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun','Jul','Aug','Sep','Oct','Nov','Dec',]"
                         variant="outlined"
+                        required
                         ></v-select>
                     </v-col>
                     <v-col cols="5">
                         <v-select
                         label="Year"
+                        :rules="dobRules3"
                         v-model="year"
                         :items="['2002', '2001', '2000', '1999', '1998', '1997','1996','1995','1994','1993','1992','1991','1990']"
                         variant="outlined"
+                        required
                         ></v-select>
                     </v-col>
                       </v-row>
                       <v-select  v-model="MaritalStatus" label="Marital Status"
+                      :rules="[v => !!v || 'MaritalStatus is required']"
                             :items="['Never Married', 'Windower', 'Divorced', 'Awaiting Divorce']"
-                            variant="outlined">
+                            variant="outlined" required>
                       </v-select>
                       <v-select
                         v-model="caste"
                         label="Caste"
+                      :rules="[v => !!v || 'Caste is required']"
+                      required
                         :items="['Intercaste', 'Irani', 'Others', 'Parsi','Dont wish to specify']"
                         variant="outlined">
                       </v-select>
                       <v-row>
                         <v-col cols="6">
-                          <v-text-field v-model="FatherName" label="Father Name" variant="outlined"></v-text-field>
+                          <v-text-field v-model="FatherName" :rules="fateherNameRules" label="Father Name" required variant="outlined"></v-text-field>
                         </v-col>
                         <v-col cols="6">
-                          <v-text-field v-model="FatherOccupation " label="Father Occupation" variant="outlined"></v-text-field>
+                          <v-text-field v-model="FatherOccupation  " :rules="fateherNameOccupation" required label="Father Occupation" variant="outlined"></v-text-field>
                         </v-col>
                       </v-row>
                       
                       <v-row>
                         <v-col cols="6">
-                        <v-text-field v-model="MotherName" label="Mother Name" variant="outlined"></v-text-field>
+                        <v-text-field v-model="MotherName" label="Mother Name" :rules="motherNameRules" required variant="outlined"></v-text-field>
                         </v-col>
                         <v-col cols="6">
-                        <v-text-field v-model="MotherOccupation" label="MotherOccupation" variant="outlined"></v-text-field>
+                        <v-text-field v-model="MotherOccupation" label="MotherOccupation" required :rules="motherOccupation" variant="outlined"></v-text-field>
                         </v-col>
                       </v-row>
                       <v-row>
                         <v-col cols="6">
-                            <v-text-field label="Age" v-model="age"  variant="outlined"></v-text-field>
+                            <v-text-field label="Age" v-model="age"  :rules="AgeRules" required variant="outlined"></v-text-field>
                         </v-col>
                         <v-col cols="6">
-                            <v-text-field label="Height" v-model="height"  variant="outlined"></v-text-field>
+                            <v-text-field label="Height" v-model="height" :rules="HeightRules" required variant="outlined"></v-text-field>
                         </v-col>
                       </v-row>
                       <v-select
                             label="Religion"
                             v-model="Religion"
+                            :rules="[v => !!v || 'Religion is required']"
                             :items="['Hindu', 'Muslim', 'Christian']"
+                            required
                             variant="outlined">
                        </v-select>
                        <v-select
                             label="Education"
                             v-model="Education"
+                            :rules="[v => !!v || 'Education is required']"
                             :items="['UG', 'PG', 'SSLC','HSLC','Diplomo',]"
-                            variant="outlined">
+                            variant="outlined"
+                            required>
                         </v-select>
                         <v-select
                             label="Profession"
                             v-model="Profession"
+                            :rules="[v => !!v || 'Profession is required']"
                             :items="['DOCTOR', 'IT', 'NON IT','BUSSINESS','CIVIL','GOVERMENT JOB','OTHERS']"
+                            required
                             variant="outlined">
                         </v-select>
                         <v-row>
                           <v-col cols="12">
-                          <v-text-field label="lives" v-model="lives"  variant="outlined"></v-text-field>
+                          <v-text-field label="lives" v-model="lives" :rules="livesRules"  variant="outlined" required></v-text-field>
                           </v-col>
                         </v-row>
                         <v-row>
@@ -103,23 +116,23 @@
                             <v-text-field label="ElderBrother" type="number" v-model="ElderBrothers" variant="outlined"></v-text-field>
                           </v-col>
                           <v-col cols="6">
-                         <v-text-field label="YoungerBrother" v-model="YoungerBrother" type="number" variant="outlined"></v-text-field>
+                         <v-text-field label="YoungerBrother" v-model="YoungerBrother" type="number" variant="outlined" ></v-text-field>
                           </v-col>
                         </v-row>
                         <v-row>
                           <v-col cols="6">
-                            <v-text-field label="ElderSister" type="number" v-model="ElderSister" variant="outlined"></v-text-field>
+                            <v-text-field label="ElderSister" type="number" v-model="ElderSister" variant="outlined" ></v-text-field>
                           </v-col>
                           <v-col cols="6">
-                         <v-text-field label="YoungerSister" v-model="YoungerSister" type="number" variant="outlined"></v-text-field>
+                         <v-text-field label="YoungerSister" v-model="YoungerSister" type="number" variant="outlined"  ></v-text-field>
                           </v-col>
                         </v-row>
                         
-                      <v-text-field label="Rashi" v-model="Rashi"  variant="outlined"></v-text-field>
-                      <v-text-field label="Nadchathiram" v-model="Nadchathiram" variant="outlined"></v-text-field>
-                      <v-text-field label="Thosam" v-model="Thosam" variant="outlined"></v-text-field>
+                      <v-text-field label="Rashi" :rules="RashiRules" v-model="Rashi"  variant="outlined" required></v-text-field>
+                      <v-text-field label="Nadchathiram " :rules="NadchathiramRules"  v-model="Nadchathiram" required variant="outlined"></v-text-field>
+                      <v-text-field label="Thosam" :rules="ThosamRules" v-model="Thosam" required variant="outlined"></v-text-field>
                       <v-text-field  v-model="FamilyGod"  label="Family God" variant="outlined"></v-text-field>
-                      <v-text-field label="Mobile Number" v-model="mobile"  variant="outlined"></v-text-field>
+                      <v-text-field label="Mobile Number" :rules="MobileRules" v-model="mobile" required variant="outlined"></v-text-field>
                       <v-text-field v-model="email" type="email" label="Enter Your Email" variant="outlined"></v-text-field>
                       <v-text-field v-model="password" type="password" label="Enter Your Password" variant="outlined"></v-text-field>
                       <v-row>
@@ -187,6 +200,7 @@ const Month = ref(null)
 const year = ref(null)
 const gender = ref(null)
 let date_menu = ref(false)
+const form = ref()
 
 
 // let dob = ref(null)
@@ -201,7 +215,96 @@ let date_menu = ref(false)
 //   console.log(date.value);
 //   date_menu.value = false
 // }
-
+const firstNameRules = [
+    value => {
+      if (value?.length > 3) return true
+      return 'First name must be at least 3 characters.'
+    },
+  ]
+const fateherNameRules = [
+    value => {
+      if (value?.length > 3) return true
+      return 'Father name must be at least 3 characters.'
+    },
+  ]
+const motherNameRules = [
+    value => {
+      if (value?.length > 3) return true
+      return 'Mother name must be at least 3 characters.'
+    },
+  ]
+const motherOccupation = [
+    value => {
+      if (value?.length > 0) return true
+      return 'Mother Occupation not set.'
+    },
+  ]
+const fateherNameOccupation = [
+    value => {
+      if (value?.length > 0) return true
+      return 'Father Occupation not set.'
+    },
+  ]
+  const dobRules1 = [
+    value => {
+      if (value) return true
+      return 'Date or not set '
+    },
+  ]
+  const dobRules2 = [
+    value => {
+      if (value) return true
+      return 'Month or not set '
+    },
+  ]
+  const dobRules3 = [
+    value => {
+      if (value) return true
+      return 'Year or not set '
+    },
+  ]
+  const AgeRules = [
+    value => {
+      if (value) return true
+      return 'Age or not set '
+    },
+  ]
+  const HeightRules = [
+    value => {
+      if (value) return true
+      return 'height or not set '
+    },
+  ]
+  const livesRules = [
+    value => {
+      if (value?.length > 4) return true
+      return 'lives area not '
+    },
+  ]
+  const RashiRules = [
+    value => {
+      if (value?.length > 4) return true
+      return 'Rashi are not  support'
+    },
+  ]
+  const NadchathiramRules = [
+    value => {
+      if (value?.length > 4) return true
+      return 'Nadchathiram are  not support '
+    },
+  ]
+  const ThosamRules = [
+    value => {
+      if (value?.length > 4) return true
+      return 'Thosam are  not support '
+    },
+  ]
+  const MobileRules = [
+    value => {
+      if (value?.length > 10) return true
+      return 'Mobile number error '
+    },
+  ]
 const handleLogin = async (e) => {
   try { 
     loading.value = true

@@ -102,7 +102,7 @@
                             label="Profession"
                             v-model="Profession"
                             :rules="[v => !!v || 'Profession is required']"
-                            :items="['DOCTOR', 'IT', 'NON IT','BUSSINESS','CIVIL','GOVERMENT JOB','OTHERS']"
+                            :items="['Doctor', 'IT', 'Non IT','Bussiness','Civil','Goverment Job','Others']"
                             required
                             variant="outlined">
                         </v-select>

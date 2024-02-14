@@ -7,12 +7,12 @@
         </v-col>
         
         <v-col lg="8" md="8" sm="12" >
-          <div class="lg:hidden block">
+          <div class="lg:hidden block  ">
             <v-dialog  
               v-model="show"
               fullscreen
               :scrim="false"
-              transition="slide-x-reverse-transition"
+              transition="scale-transition"
             >
               <template v-slot:activator="{ props }">
                 <v-btn
@@ -47,8 +47,8 @@
                   </v-toolbar-items>
                 </v-toolbar>
                 <v-row>
-          <v-col>
-            <v-tabs v-model="tab"   class="mx-auto text-center ">
+          <v-col class="pl-15">
+            <v-tabs v-model="tab"   class="mx-auto text-center  ">
               <v-tab value="one">Filter Profile</v-tab>
               <v-tab value="two">Sort Profile</v-tab>
             </v-tabs>
@@ -753,20 +753,23 @@
           <v-container>
            
               <v-card class="mb-5" >
-                <v-row  >
-                  <v-col    class=" text-center w-full lg:w-1/2   p-3 ">
-                    <v-img :width="210"  class="p-24 mx-auto my-5  rounded-xl" aspect-ratio="16/9" cover src="https://img.freepik.com/free-photo/portrait-young-man-talking-phone-walking-street_231208-2764.jpg" >
-                    </v-img>
+                <v-row v-for="profile in profileList" :key="profile.id" >
+                  <v-col    class=" text-center w-full lg:w-1/2   p-3 "  >
+                    <NuxtLink  :to="`/${profile.id}`">
+                      <v-img :width="210"  class="p-24 mx-auto my-5  rounded-xl" cover aspect-ratio="16/9" v-model:src="profile.photos" >
+                        <!-- cover src="https://img.freepik.com/free-photo/portrait-young-man-talking-phone-walking-street_231208-2764.jpg"  -->
+                      </v-img>
+                    </NuxtLink>
                   </v-col>
                   <v-col >
                     <v-col class="text-left    w-full md:w-1/2 px-5 flex flex-col">
                             <v-row><span class="mdi mdi-shield-check text-blue mt-3  ">id verified</span></v-row>
-                            <v-row class="font-bold text-h5 mt-4">mohan</v-row>
+                            <v-row class="font-bold text-h5 mt-4">{{ profile.name }}</v-row>
                             <!-- <v-row class="text-gray-400 mt-4">M09872334 | Last seen few hour ago</v-row> -->
                             <v-row class="text-left mt-3">
                               <div >
-                                <h2>23Yrs <span class="mx-4"> 5'2"</span>Adhithiya <span class="mx-4">M.SC. BPO / KPO /ITes </span> </h2>
-                                <h2 >Professional <span class="mx-4">pondicherry</span>  </h2>
+                                <h2>{{ profile.age }}<span class="mx-4">,{{ profile.height }} </span>Adhithiya <span class="mx-4">M.SC. BPO / KPO /ITes </span> </h2>
+                                <h2 >{{ profile.Profession }} <span class="mx-4">{{ profile.lives }}</span>  </h2>
                                 <h2 class="mt-4 text-gray-400">Interested in her ?</h2>
                                 <h2  >Connect Now</h2>
                                 <!-- <div class="my-2">
@@ -780,72 +783,7 @@
                   </v-col>
                 </v-row>
               </v-card >
-              <v-card class="mb-5">
-                <v-row >
-                  <v-col  class=" text-center w-full lg:w-1/2  p-3 ">
-                    <v-img :width="210"  class="p-24 mx-auto my-5  rounded-xl" aspect-ratio="16/9" cover src="https://storage.googleapis.com/pai-images/3ac434680c7c469b868bc247e3cb01f0.jpeg" >
-                    </v-img>
-                  </v-col>
-                  <v-col > 
-                    <v-col class="text-left    w-full md:w-1/2 flex flex-col px-5">
-                            <v-row><span class="mdi mdi-shield-check text-blue mt-3  ">id verified</span></v-row>
-                            <v-row class="font-bold text-h5 mt-4">kiran</v-row>
-                            <!-- <v-row class="text-gray-400 mt-4">M09872334 | Last seen few hour ago</v-row> -->
-                            <v-row class="text-left mt-3">
-                              <div >
-                                <h2>23Yrs <span class="mx-4"> 5'2"</span>Adhithiya <span class="mx-4">M.SC. BPO / KPO /ITes </span> </h2>
-                                <h2 >Professional <span class="mx-4">pondicherry</span>  </h2>
-                                <h2 class="mt-4 text-gray-400">Interested in her ?</h2>
-                                <h2  >Connect Now</h2>
-                                <!-- <div class="my-2">
-                                  <v-btn class=" border border-black rounded-xl"><span class="mdi mdi-close text-xl lg:text-2xl"></span>Dont'show</v-btn>
-                                  <v-btn class=" border border-black rounded-xl ml-3 bg-orange"><span class="mdi mdi-check text-2xl"></span>Send Interest</v-btn>
-                                </div> -->
-                              </div>
-                            </v-row>
-                            <v-row>
-                                
-                            </v-row>
-                            <v-row >
-                                
-                            </v-row>
-                    </v-col>
-                  </v-col>
-                </v-row>
-              </v-card>
-              <v-card class="mb-5">
-                <v-row >
-                  <v-col  class=" text-center w-full lg:w-1/2  p-3 ">
-                    <v-img :width="210"  class="p-24 mx-auto my-5  rounded-xl" aspect-ratio="16/9" cover src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-OqwmvDFJl9S3PwbYNGq3LSF8rk3CRxPQQ0-exhPNg7JLcnsfDyJCvOM2i3xBf7XRiw4&usqp=CAU" >
-                    </v-img>
-                  </v-col>
-                  <v-col >
-                    <v-col class="text-left    w-full md:w-1/2 flex flex-col px-5">
-                            <v-row><span class="mdi mdi-shield-check text-blue mt-3  ">id verified</span></v-row>
-                            <v-row class="font-bold text-h5 mt-4">Vimal</v-row>
-                            <!-- <v-row class="text-gray-400 mt-4">M09872334 | Last seen few hour ago</v-row> -->
-                            <v-row class="text-left mt-3">
-                              <div >
-                                <h2>23Yrs <span class="mx-4"> 5'2"</span>Adhithiya <span class="mx-4">M.SC. BPO / KPO /ITes </span> </h2>
-                                <h2 >Professional <span class="mx-4">pondicherry</span>  </h2>
-                                <h2 class="mt-4 text-gray-400">Interested in her ?</h2>
-                                <h2  >Connect Now</h2>
-                                <!-- <div class="my-2">
-                                  <v-btn class=" border border-black rounded-xl"><span class="mdi mdi-close text-2xl"></span>Dont'show</v-btn>
-                                  <v-btn class=" border border-black rounded-xl ml-3 bg-orange"><span class="mdi mdi-check text-2xl"></span>Send Interest</v-btn>
-                                </div> -->
-                              </div>
-                            </v-row>
-                            <v-row>
-                                
-                            </v-row>
-                            <v-row >
-                                
-                            </v-row>
-                    </v-col>
-                  </v-col>
-                </v-row>
-              </v-card>
+             
           </v-container>
         </v-col>
       </v-row>
@@ -887,6 +825,16 @@
  const Citizenship = ref('Any')
  const profiles = ref([''])
 const show =ref(false)
+const supabase = useSupabaseClient()
+
+const profileList = ref([])
+
+onMounted(async() =>{
+  let { data: profiles, error } = await supabase
+  .from('profiles')
+  .select('*')
+  profileList.value = profiles
+})
 // const search = async () =>{
 //   const { data, error } = await supabase
 //   .from('profiles')

@@ -6,28 +6,34 @@
         </label>
           <v-app-bar-title> MatriMony </v-app-bar-title>
             <div class="text-4xl lg:mr-32  hidden lg:block">
-              <v-btn value="recent" to="/" class="mx-5">
-                  <v-icon>mdi-home</v-icon>
+              <!-- <v-btn value="recent" to="/" class="px-5   ">
+                  <v-icon >mdi-home</v-icon>
                   <span to="/"> Home</span>
+              </v-btn> -->
+              <v-btn value="recent" to="/user"  class="px-5 hover:text-blue-500">
+                  <v-icon>mdi-home</v-icon>
+                  <span >Home</span>
               </v-btn>
-              <v-btn value="recent" to="/Profile"  class="px-5">
+              <v-btn value="recent" to="/Profile"  class="px-5 hover:text-blue-500">
                   <v-icon>mdi-account</v-icon>
                   <span to="/profile">Matches</span>
               </v-btn>
-              <v-btn value="recent"  class="px-5">
+              <v-btn value="recent"  class="px-5  hover:text-blue-500 ">
                   <v-icon>mdi-mail</v-icon>
                   <span>Mailbox</span>
               </v-btn>
-              <v-btn value="recent"  class="px-5">
+              <v-btn value="recent"  class="px-5 hover:text-blue-500">
                   <v-icon>mdi-wrench</v-icon>
                   <span>Chat</span>
               </v-btn>
-              <v-btn value="recent"  class="px-5">
+              <v-btn value="recent"  class="px-5 hover:text-blue-500">
                   <span class="mdi mdi mdi-bell text-h6"></span>
                   <span>Notification</span>
               </v-btn>
             </div>
             <div class="hidden lg:block">
+              <!-- <v-btn @click="language=!language">Tamil</v-btn> -->
+
               <v-btn  @click="" ><span class="mdi mdi-account-circle text-4xl"></span> <v-btn><span class="mdi mdi-chevron-down"></span></v-btn></v-btn>
             <!-- signOut -->
             </div>

@@ -10,9 +10,9 @@
                   <v-icon >mdi-home</v-icon>
                   <span to="/"> Home</span>
               </v-btn> -->
-              <v-btn value="recent" to="/user"  class="px-5 hover:text-blue-500">
+              <v-btn value="recent" to="/"  class="px-5 hover:text-blue-500">
                   <v-icon>mdi-home</v-icon>
-                  <span >Home</span>
+                  <span to="/">Home</span>
               </v-btn>
               <v-btn value="recent" to="/Profile"  class="px-5 hover:text-blue-500">
                   <v-icon>mdi-account</v-icon>
@@ -33,8 +33,9 @@
             </div>
             <div class="hidden lg:block">
               <!-- <v-btn @click="language=!language">Tamil</v-btn> -->
-
-              <v-btn  @click="" ><span class="mdi mdi-account-circle text-4xl"></span> <v-btn><span class="mdi mdi-chevron-down"></span></v-btn></v-btn>
+              
+  
+              <v-btn  @click="signOut" ><span class="mdi mdi-account-circle text-4xl"></span> <v-btn><span class="mdi mdi-chevron-down"></span></v-btn></v-btn>
             <!-- signOut -->
             </div>
          
@@ -60,5 +61,6 @@ const signOut = async () => {
     await supabase.auth.signOut()
     navigateTo('/auth') 
 }
+
 
 </script>

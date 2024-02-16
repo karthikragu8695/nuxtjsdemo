@@ -1,7 +1,7 @@
 <template>
     <div class="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 px-6 py-3">
     <v-app-bar :elevation="10">
-        <v-app-bar-title>MatriMony</v-app-bar-title>
+        <v-app-bar-title><v-img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSyvLdlSnwfyHe7Xoz4rNZcHdYJKlKnxUUkxMM7J92wSC8PCoT8IuiVgf3Qp5ykBFrBUg&usqp=CAU" class="w-20"></v-img></v-app-bar-title>
       <div class="text-4xl">
         <v-spacer></v-spacer>
         <v-btn   @click="show=true" size="large" class="text-orange px-3">Login </v-btn>

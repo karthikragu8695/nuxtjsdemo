@@ -1,8 +1,8 @@
 <template>
     <v-container>
         <v-row>
-          <v-col>
-            <v-tabs v-model="tab"   class="mx-auto text-center ">
+          <v-col >
+            <v-tabs v-model="tab"   class="mx-auto text-center  ">
               <v-tab v-if="!language" value="one">Filter Profile</v-tab>
               <v-tab v-else value="one" >வடிகட்டி சுயவிவரம்</v-tab>
               <v-spacer></v-spacer>
@@ -35,7 +35,7 @@
                           <v-card class="px-5 py-10 ">
                             <v-row>
                               <v-col cols="12">
-                                <div class="flex ">
+                                <div class="flex">
                                   <h2 v-if="!language">select Age</h2>
                                   <h2 v-else>வயதைத் தேர்ந்தெடுக்கவும்</h2>
                                   <v-spacer></v-spacer>
@@ -199,16 +199,7 @@
                                 </v-col>
                               </v-row>
                             </v-row>
-                            <v-row>
-                              <v-col cols="12">
-                                <div class="flex ">
-                                  <h2 v-if="!language">select Maritalstatus </h2>
-                                  <h2 v-else>திருமண நிலையைத் தேர்ந்தெடுக்கவும்</h2>
-                                  <v-spacer></v-spacer>
-                                  <v-icon @click="Maritaldialog=false">mdi-close</v-icon>
-                                </div>
-                              </v-col>
-                            </v-row>
+                            
                             <!-- <v-select v-if="!language"
                               v-model="favorites"
                               :items="states"
@@ -227,7 +218,7 @@
                               multiple
                               persistent-hint
                             ></v-select> -->
-                            <v-row>
+                            <!-- <v-row>
                                 <v-col cols="3">
                                 </v-col>
                                 <v-col cols="3.5">
@@ -238,7 +229,7 @@
                                   <v-btn @click="Maritaldialog=false" v-if="!language">Apply</v-btn>
                                   <v-btn @click="Maritaldialog=false" v-else>விண்ணப்பி</v-btn>
                                 </v-col>
-                              </v-row>
+                              </v-row> -->
                           
                             </v-card>
                           

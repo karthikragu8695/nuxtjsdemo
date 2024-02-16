@@ -1,5 +1,5 @@
 <template>
-        <v-container>
+        <div class="px-10">
          <NuxtLink><span  class="text-h5 lg:ml-20">All Matches</span></NuxtLink>   
           <div v-if="profile">
           <v-row dense>
@@ -12,19 +12,19 @@
                       </v-avatar> 
                   </div>
                   <v-col class="text-left   w-full md:w-1/3 lg:w-2/3 flex flex-col">
-                        <v-row><span class="mdi mdi-shield-check text-blue mt-3  ">id verified</span></v-row>
+                        <v-row><span class="mdi mdi-shield-check text-pink mt-3  ">id verified</span></v-row>
                         <v-row class="font-weight-medium text-h5 mt-4">{{ profile.name }}</v-row>
                         <v-row class="text-gray-300 mt-4">M09872334 | Last seen few hour ago</v-row>
                         <v-row class="text-left ">
-                            <v-col cols="1" class="text-left mx-auto "><span class="mdi mdi-account-circle-outline mt-1  text-white p-0.5 rounded bg-blue-500"></span></v-col>
+                            <v-col cols="1" class="text-left mx-auto "><span class="mdi mdi-account-circle-outline mt-1  text-white p-0.5 rounded bg-pink-500"></span></v-col>
                             <v-col cols="11" class="text-left ">{{ profile.age }} , {{ profile.height }}</v-col>
                         </v-row>
                         <v-row>
-                            <v-col cols="1" class="text-left"><span class="mdi  mdi-account-box-multiple text-white p-0.5 rounded bg-blue-500"></span></v-col>
+                            <v-col cols="1" class="text-left"><span class="mdi  mdi-account-box-multiple text-white p-0.5 rounded bg-pink-500"></span></v-col>
                             <v-col cols="11" class="text-left">{{ profile.Profession }}</v-col>
                         </v-row>
                         <v-row >
-                            <v-col cols="1" class="text-left"><span class="mdi mdi mdi-map-marker-radius-outline text-white p-0.5 rounded bg-blue-500"></span></v-col>
+                            <v-col cols="1" class="text-left"><span class="mdi mdi mdi-map-marker-radius-outline text-white p-0.5 rounded bg-pink-500"></span></v-col>
                             <v-col cols="11" class="text-left">{{ profile.lives }}</v-col>
                         </v-row>
                   </v-col>
@@ -211,7 +211,7 @@
         </v-card>
 
         </div>
-        </v-container>
+      </div>
 </template>
 
 <script setup>

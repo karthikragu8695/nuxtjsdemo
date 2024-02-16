@@ -312,14 +312,7 @@ const handleLogin = async (e) => {
       email: email.value,
       password: password.value
      })
-//      const uploadFile = async () =>{
-//     console.log(photos.value[0]);
-//      const { data, error } = await supabase.storage
-//      .from('images')
-//      .upload(`photos/${photos.value[0].name}`, photos.value[0])
-//      console.log(data)
-//      console.log(error);
-// }
+
     if (data.user)  {
       let profile = {  
             name: name.value, 
@@ -349,18 +342,13 @@ const handleLogin = async (e) => {
             type: 'user',
             photos:"https://myizzcmzjfnzaldgrqgw.supabase.co/storage/v1/object/public/images/photos/"+photos.value[0].name
       }
-      console.log(profile);
       const {data,error}= await supabase.storage.from('images').upload(`photos/${photos.value[0].name}`,photos.value[0])  
-      console.log(error)
-      console.log(data);
-      // await supabase.storage.from('images').upload('image',photos.value[0])  
       await supabase
         .from('profiles')
         .insert([profile])
         .then((res) => {
-        if(!res.error) {
+        if(res.error) {
           navigateTo('/')
-          console.log("login successfull")
         }
       })
     }else{
@@ -371,9 +359,7 @@ const handleLogin = async (e) => {
   } finally {
     loading.value = false
   }
-  
 }
-
 </script>
 
 

@@ -865,7 +865,7 @@
                   </v-col>
                   <v-col >
                     <v-col class="text-left    w-full md:w-1/2 px-5 flex flex-col">
-                            <v-row><span class="mdi mdi-shield-check text-pink mt-3  ">id verified</span></v-row>
+                            <v-row><span class="mdi mdi-shield-check text-blue mt-3  ">id verified</span></v-row>
                             <v-row class="font-bold text-h5 mt-4">{{ profile.name }}</v-row>
                             <!-- <v-row class="text-gray-400 mt-4">M09872334 | Last seen few hour ago</v-row> -->
                             <v-row class="text-left mt-3">
@@ -958,7 +958,7 @@ onMounted(async() =>{
 // }
 
 definePageMeta({
-  layout: 'indexlayout',
+  layout: 'admin',
 })
     
  
